@@ -1,5 +1,5 @@
 class Controller
-  #attr_reader 
+  attr_reader :input_file, :output_file 
   
   def initialize(user_input)
     @input_file = user_input[0]
