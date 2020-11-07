@@ -28,10 +28,7 @@ class ControllerTest < Minitest::Test
   end
 
   def test_it_can_generate_new_file
-    # text = "lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris facilisis lorem lectus, vel interdum lorem imperdiet quis. Proin aliquam urna eu leo mollis, et laoreet lorem viverra. Vivamus blandit enim ipsum, nec luctus risus maximus vel. In sed mi odiom test"
-    # mock_file = mock
-    # mock_file.expects(:open).returns(nil)
-    # mock_file.expects(:write).returns
+    assert_instance_of File, @controller.output_file
 
   end
 end
