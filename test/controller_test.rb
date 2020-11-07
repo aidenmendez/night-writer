@@ -13,7 +13,6 @@ class ControllerTest < Minitest::Test
 
   def test_it_returns_a_message
     msg = "Created 'braille.txt' containing 256 characters"
-    assert_equal msg, @controller.respond_to_user
+    assert_equal msg, @controller.confirm_file_creation
   end
-  
 end
