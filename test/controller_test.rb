@@ -1,7 +1,4 @@
-require 'Minitest/autorun'
-require 'Minitest/pride'
-require 'mocha/minitest'
-require './lib/controller'
+require_relative "./test_helper"
 
 class ControllerTest < Minitest::Test
   def setup

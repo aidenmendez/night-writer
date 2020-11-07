@@ -1,3 +1,4 @@
 .DS_Store
-braille.txt
-ipsum_lorem.txt
+*.txt
+!message.txt
+coverage
