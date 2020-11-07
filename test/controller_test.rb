@@ -11,6 +11,11 @@ class ControllerTest < Minitest::Test
     assert_instance_of Controller, @controller
   end
 
+  def test_it_has_attr_readers
+    assert_equal "message.txt", @controller.input_file
+    assert_equal "braille.txt", @controller.output_file
+  end
+
   def test_it_returns_a_message
     msg = "Created 'braille.txt' containing 256 characters"
     assert_equal msg, @controller.confirm_file_creation
