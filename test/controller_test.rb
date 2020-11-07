@@ -1,5 +1,6 @@
 require 'Minitest/autorun'
 require 'Minitest/pride'
+require 'mocha/minitest'
 require './lib/controller'
 
 class ControllerTest < Minitest::Test
@@ -17,12 +18,20 @@ class ControllerTest < Minitest::Test
   end
 
   def test_it_returns_a_message
-    msg = "Created 'braille.txt' containing 256 characters"
+    msg = "Created 'braille.txt' containing 261 characters"
     assert_equal msg, @controller.confirm_file_creation
   end
 
   def test_it_can_read_in_text_file
     text = "lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris facilisis lorem lectus, vel interdum lorem imperdiet quis. Proin aliquam urna eu leo mollis, et laoreet lorem viverra. Vivamus blandit enim ipsum, nec luctus risus maximus vel. In sed mi odiom test"
-    assert_equal text, @controller.read_in_file(@controller.input_file_name)
+    assert_equal text, @controller.input_file_content
+  end
+
+  def test_it_can_generate_new_file
+    # text = "lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris facilisis lorem lectus, vel interdum lorem imperdiet quis. Proin aliquam urna eu leo mollis, et laoreet lorem viverra. Vivamus blandit enim ipsum, nec luctus risus maximus vel. In sed mi odiom test"
+    # mock_file = mock
+    # mock_file.expects(:open).returns(nil)
+    # mock_file.expects(:write).returns
+
   end
 end
