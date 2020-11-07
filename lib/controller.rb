@@ -1,6 +1,6 @@
 class Controller
-  attr_reader :input_file_name, :output_file_name , :input_file_content
-  
+  attr_reader :input_file_name, :output_file_name, :input_file_content
+
   def initialize(user_input)
     @input_file_name = user_input[0]
     @output_file_name = user_input[1]

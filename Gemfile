@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
-gem 'simplecov', require: false, group: :test
-
+git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
+gem "simplecov", require: false, group: :test
+gem "standard", group: [:development, :test]
 # gem "rails"

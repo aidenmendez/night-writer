@@ -5,7 +5,7 @@ class ControllerTest < Minitest::Test
     @controller = Controller.new(["message.txt", "braille.txt"])
   end
 
-  def test_it_exists	
+  def test_it_exists
     assert_instance_of Controller, @controller
   end
 
