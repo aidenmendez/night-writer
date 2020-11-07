@@ -27,4 +27,9 @@ class ControllerTest < Minitest::Test
     assert_equal text, @controller.get_file_content(@controller.input_file_name)
     assert_equal text, @controller.input_file_content
   end
+
+  def test_it_can_get_file_content
+    text = "lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris facilisis lorem lectus, vel interdum lorem imperdiet quis. Proin aliquam urna eu leo mollis, et laoreet lorem viverra. Vivamus blandit enim ipsum, nec luctus risus maximus vel. In sed mi odiom test"
+    assert_equal text, @controller.get_file_content(@controller.input_file_name)
+  end
 end
