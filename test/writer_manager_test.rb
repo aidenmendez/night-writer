@@ -14,7 +14,7 @@ class WriterManagerTest < Minitest::Test
     assert_instance_of Translator, @writer_manager.translator
   end
 
-  def test_it_can_get_file_contents
+  def test_it_can_get_file_content
     text = "welcome to my program!"
     assert_equal text, @writer_manager.get_file_content("message.txt")
   end
@@ -29,9 +29,11 @@ class WriterManagerTest < Minitest::Test
   end
 
   def test_braille_row_gen
-    @writer_manager.braille_row_gen("hello world")
+    File.expects(:readlines).returns(["hello world"])
+    test_manager = WriterManager.new(nil, "mock_file.txt")
 
-    assert_instance_of BrailleRow, @writer_manager.braille_rows[0]
+    assert_instance_of BrailleRow, test_manager.braille_rows[0]
+    assert_equal "hello world", test_manager.braille_rows[0].characters
   end
 
   def test_braille_row_gen_with_longer_string
@@ -59,7 +61,7 @@ class WriterManagerTest < Minitest::Test
     assert_equal braille, File.read("braille.txt")
   end
 
-  def test_print_lines_when_there_are_multiple_rows_zzz
+  def test_print_lines_when_there_are_multiple_rows
     all_lines = [".0","00",".0","0.","00","..","00",".0", "00"] #www
     braille = ".0\n00\n.0\n0.\n00\n..\n00\n.0\n00"
 
