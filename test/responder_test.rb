@@ -10,7 +10,7 @@ class ResponderTest < Minitest::Test
   end
 
   def test_it_returns_confirmation_message
-    msg = "Created 'braille.txt' containing 261 characters"
-    assert_equal msg, @responder.confirm_file_created("braille.txt", 261)
+    msg = "Created 'braille.txt' containing 22 characters"
+    assert_equal msg, @responder.confirm_file_created("braille.txt", 22)
   end
 end
