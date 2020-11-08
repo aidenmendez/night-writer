@@ -17,7 +17,8 @@ class WriterManagerTest < Minitest::Test
 
   def test_it_can_write_output_file
     new_file = "test.txt"
-    assert new_file, @writer_manager.write_output_file()
+    content = "welcome to my program!"
+    assert new_file, @writer_manager.write_output_file(content, new_file)
     assert_equal "welcome to my program!", File.read(new_file)
   end
 
