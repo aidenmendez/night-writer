@@ -1,7 +1,10 @@
 class WriterManager
-  attr_reader :braille_rows
+  attr_reader :braille_rows,
+              :text
 
-  def initialize
+  def initialize(parent, input_file_name)
+    @parent = parent
+    @text = get_file_content(input_file_name)
     @braille_rows = []
   end
 
