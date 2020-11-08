@@ -19,4 +19,11 @@ class TranslatorTest < Minitest::Test
     assert_equal a, @translator.keys["a"]
     assert_equal p, @translator.keys["p"]
   end
+
+  def test_key_gen
+    key = @translator.key_gen
+    assert_instance_of Hash, key
+    assert_equal ["0.", "..", "00"], key["u"]
+    assert_equal ["..", "0.", "00"], key["?"]
+  end
 end

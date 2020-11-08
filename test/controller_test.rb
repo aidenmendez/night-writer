@@ -21,7 +21,7 @@ class ControllerTest < Minitest::Test
     assert_equal msg, @controller.confirm_file_created
   end
 
-  def test_it_input_file_content_attribute
+  def test_it_has_input_file_content_attribute
     text = "welcome to my program!"
     assert_equal text, @controller.input_file_content
   end
@@ -33,7 +33,8 @@ class ControllerTest < Minitest::Test
 
   def test_it_can_write_output_file
     assert "braille.txt", @controller.write_output_file
-    assert_equal "welcome to my program!", File.read("braille.txt")
+    text = ".00.0.000.000....00...0000..000.0.000.0.00..\n00.00....0...0..00.0.....0..0.00.00000....00\n.0..0...0.0.....0.0...0.00..0.0.0...0...0.0."
+    assert_equal text, File.read("braille.txt")
   end
 end
  
