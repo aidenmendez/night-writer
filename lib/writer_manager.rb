@@ -8,6 +8,7 @@ class WriterManager
     @parent = parent
     @text = get_file_content(input_file_name)
     @braille_rows = []
+    braille_row_gen(@text)
   end
 
   def get_file_content(file_name)
@@ -24,7 +25,7 @@ class WriterManager
     chunks = text.scan(/.{1,40}/)
 
     chunks.each do |chunk|
-      @braille_rows << BrailleRow.new(chunk)
+      @braille_rows << BrailleRow.new(self, chunk)
     end
   end
 end
