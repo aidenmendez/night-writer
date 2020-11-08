@@ -2,12 +2,16 @@ require_relative "./test_helper"
 
 class WriterManagerTest < Minitest::Test
   def setup
-    @writer_manager = WriterManager.new
+    @controller = Controller.new(["message.txt", "braille.txt"])
+    @writer_manager = @controller.writer_manager
   end
 
   def test_it_exists_and_has_atttributes
+    text = "welcome to my program!"
+
     assert_instance_of WriterManager, @writer_manager 
     assert_equal [], @writer_manager.braille_rows
+    assert_equal text, @writer_manager.text
   end
 
   def test_it_can_get_file_contents
