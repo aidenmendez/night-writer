@@ -14,7 +14,7 @@ class Controller
     @output_file_name = user_input[1]
     @responder = Responder.new
     @translator = Translator.new
-    @writer_manager = WriterManager.new
+    @writer_manager = WriterManager.new(self, @input_file_name)
     @input_file_content = get_file_content
   end
 
