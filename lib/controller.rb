@@ -29,8 +29,4 @@ class Controller
   def write_output_file
     @writer_manager.write_output_file(input_file_content, output_file_name)
   end
-
-  def get_length_key
-    @translator.get_length_key
-  end
 end
