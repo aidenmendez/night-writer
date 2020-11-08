@@ -10,7 +10,6 @@ class WriterManagerTest < Minitest::Test
     text = "welcome to my program!"
 
     assert_instance_of WriterManager, @writer_manager 
-    assert_equal [], @writer_manager.braille_rows
     assert_equal text, @writer_manager.text
   end
 
@@ -33,8 +32,12 @@ class WriterManagerTest < Minitest::Test
   end
 
   def test_braille_row_gen_with_longer_string
-    @writer_manager.braille_row_gen("hello world, this is a string that is longer than forty characters!")
+    parent = mock("mock_controller_parent")
+    file_name = mock("fake_file")
 
-    assert_equal 2, @writer_manager.braille_rows.length
+    File.expects(:readlines).returns(["hello world, this is a string that is longer than forty characters!"])
+    test_manager = WriterManager.new(parent, file_name)
+    
+    assert_equal 2, test_manager.braille_rows.length
   end
 end
