@@ -14,19 +14,24 @@ class ControllerTest < Minitest::Test
     assert_equal "braille.txt", @controller.output_file_name
   end
 
-  def test_it_returns_a_message
-    msg = "Created 'braille.txt' containing 261 characters"
-    assert_equal msg, @controller.confirm_file_creation
+  def test_can_confirm_file_created
+    msg = "Created 'braille.txt' containing 22 characters"
+    assert_equal msg, @controller.confirm_file_created
   end
 
-  def test_it_can_read_in_text_file
-    text = "lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris facilisis lorem lectus, vel interdum lorem imperdiet quis. Proin aliquam urna eu leo mollis, et laoreet lorem viverra. Vivamus blandit enim ipsum, nec luctus risus maximus vel. In sed mi odiom test"
-    assert_equal text, @controller.get_file_content(@controller.input_file_name)
+  def test_it_input_file_content_attribute
+    text = "welcome to my program!"
     assert_equal text, @controller.input_file_content
   end
 
   def test_it_can_get_file_content
-    text = "lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris facilisis lorem lectus, vel interdum lorem imperdiet quis. Proin aliquam urna eu leo mollis, et laoreet lorem viverra. Vivamus blandit enim ipsum, nec luctus risus maximus vel. In sed mi odiom test"
-    assert_equal text, @controller.get_file_content(@controller.input_file_name)
+    text = "welcome to my program!"
+    assert_equal text, @controller.get_file_content
+  end
+
+  def test_it_can_write_output_file
+    assert "braille.txt", @controller.write_output_file
+    assert_equal "welcome to my program!", File.read("braille.txt")
   end
 end
+ 

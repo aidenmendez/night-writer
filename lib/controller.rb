@@ -20,9 +20,7 @@ class Controller
     @writer_manager.get_file_content(input_file_name)
   end
 
-  def write_output_file(content)
-    file = File.open(output_file_name, "w")
-    file.write(content)
-    file.close
+  def write_output_file
+    @writer_manager.write_output_file(input_file_content, output_file_name)
   end
 end
