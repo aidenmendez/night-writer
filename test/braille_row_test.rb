@@ -31,4 +31,16 @@ class BrailleRowTest < Minitest::Test
     assert_equal "00", empty_row.line_2
     assert_equal ".0", empty_row.line_3
   end
+
+  def test_get_lines
+    mock_parent = mock
+    mock_parent.stubs(:translate_char).returns(["00", "..", "00"])
+    row_1 = BrailleRow.new(mock_parent, "x")
+    row_2 = BrailleRow.new(mock_parent, "x")
+    rows = [row_1, row_2]
+
+    lines = BrailleRow.get_lines(rows)
+
+    assert_equal ["00", "..", "00", "00", "..", "00"], lines
+  end
 end
