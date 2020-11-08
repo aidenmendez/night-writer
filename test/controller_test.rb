@@ -12,7 +12,6 @@ class ControllerTest < Minitest::Test
   def test_it_has_attributes
     assert_equal "message.txt", @controller.input_file_name
     assert_equal "braille.txt", @controller.output_file_name
-    assert_instance_of Translator, @controller.translator
     assert_instance_of Responder, @controller.responder
     assert_instance_of WriterManager, @controller.writer_manager
   end

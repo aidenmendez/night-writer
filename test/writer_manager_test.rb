@@ -11,6 +11,7 @@ class WriterManagerTest < Minitest::Test
 
     assert_instance_of WriterManager, @writer_manager 
     assert_equal text, @writer_manager.text
+    assert_instance_of Translator, @writer_manager.translator
   end
 
   def test_it_can_get_file_contents
