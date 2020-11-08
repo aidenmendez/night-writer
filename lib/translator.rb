@@ -1,11 +1,13 @@
 class Translator
-  attr_reader :parent
+  attr_reader :parent,
+              :keys
 
   def initialize(parent)
     @parent = parent
+    @keys = key_gen
   end
 
-  def keys
+  def key_gen
     {
       "a" => ["0.", "..", ".."],
       "b" => ["0.", "0.", ".."],

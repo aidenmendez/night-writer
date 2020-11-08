@@ -30,4 +30,8 @@ class WriterManager
       @braille_rows << BrailleRow.new(self, chunk)
     end
   end
+
+  def translate_char(char)
+    translator.keys[char]
+  end
 end
