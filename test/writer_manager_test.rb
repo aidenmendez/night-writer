@@ -11,8 +11,14 @@ class WriterManagerTest < Minitest::Test
   end
 
   def test_it_can_get_file_contents
-    text = "lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris facilisis lorem lectus, vel interdum lorem imperdiet quis. Proin aliquam urna eu leo mollis, et laoreet lorem viverra. Vivamus blandit enim ipsum, nec luctus risus maximus vel. In sed mi odiom test"
+    text = "welcome to my program!"
     assert_equal text, @writer_manager.get_file_content("message.txt")
+  end
+
+  def test_it_can_write_output_file
+    new_file = "test.txt"
+    assert new_file, @writer_manager.write_output_file()
+    assert_equal "welcome to my program!", File.read(new_file)
   end
 
 end
