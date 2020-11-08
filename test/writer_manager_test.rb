@@ -22,8 +22,10 @@ class WriterManagerTest < Minitest::Test
   def test_it_can_write_output_file
     new_file = "test.txt"
     content = "welcome to my program!"
+    braille = ".00.0.000.000....00...0000..000.0.000.0.00..\n00.00....0...0..00.0.....0..0.00.00000....00\n.0..0...0.0.....0.0...0.00..0.0.0...0...0.0."
+
     assert new_file, @writer_manager.write_output_file(content, new_file)
-    assert_equal "welcome to my program!", File.read(new_file)
+    assert_equal braille, File.read(new_file)
   end
 
   def test_braille_row_gen
@@ -44,5 +46,27 @@ class WriterManagerTest < Minitest::Test
 
   def test_translate_char
     assert_equal [".0", "00", ".0"], @writer_manager.translate_char("w")
+  end
+
+  def test_print_lines
+    all_lines = [".0","00", ".0"]
+    braille = ".0\n00\n.0"
+
+    file = File.open("braille.txt", "w")
+    @writer_manager.print_lines(file, all_lines)
+    file.close
+
+    assert_equal braille, File.read("braille.txt")
+  end
+
+  def test_print_lines_when_there_are_multiple_rows_zzz
+    all_lines = [".0","00",".0","0.","00","..","00",".0", "00"] #www
+    braille = ".0\n00\n.0\n0.\n00\n..\n00\n.0\n00"
+
+    file = File.open("braille.txt", "w")
+    @writer_manager.print_lines(file, all_lines)
+    file.close
+
+    assert_equal braille, File.read("braille.txt")
   end
 end
