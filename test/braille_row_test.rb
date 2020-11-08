@@ -13,6 +13,7 @@ class BrailleRowTest < Minitest::Test
   end
 
   def test_it_builds_lines
+    skip
     parent = mock
     test_row = BrailleRow.new(parent, "w")
 
@@ -25,5 +26,17 @@ class BrailleRowTest < Minitest::Test
 
   def test_translate_char
     assert_equal [".0", "00", ".0"],  @braille_row.translate_char("w")
+  end
+
+  def test_concat_lines
+    parent = mock("writer_manager")
+    characters = "w"
+    row = BrailleRow.new(parent, characters)
+    row.stubs(:build_lines).returns(nil)
+    row.concat_lines([".0", "00", ".0"])
+
+    assert_equal ".0", row.line_1
+    assert_equal "00", row.line_2
+    assert_equal ".0", row.line_3
   end
 end
