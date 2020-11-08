@@ -1,6 +1,3 @@
-require "./lib/responder"
-require "./lib/writer_manager"
-
 class Controller
   attr_reader :input_file_name,
               :output_file_name,
