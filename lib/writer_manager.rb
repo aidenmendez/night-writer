@@ -1,3 +1,5 @@
+require "./lib/braille_row"
+
 class WriterManager
   attr_reader :braille_rows,
               :text
@@ -16,5 +18,13 @@ class WriterManager
     file = File.open(file_name, "w")
     file.write(content)
     file.close
+  end
+
+  def braille_row_gen(text)
+    chunks = text.scan(/.{1,40}/)
+
+    chunks.each do |chunk|
+      @braille_rows << BrailleRow.new(chunk)
+    end
   end
 end
