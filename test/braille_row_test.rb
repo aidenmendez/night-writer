@@ -24,6 +24,6 @@ class BrailleRowTest < Minitest::Test
   end
 
   def test_translate_char
-    
+    assert_equal [".0", "00", ".0"],  @braille_row.translate_char("w")
   end
 end
