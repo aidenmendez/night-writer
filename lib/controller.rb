@@ -2,12 +2,18 @@ require "./lib/responder"
 require "./lib/writer_manager"
 
 class Controller
-  attr_reader :input_file_name, :output_file_name, :input_file_content
+  attr_reader :input_file_name,
+              :output_file_name,
+              :input_file_content,
+              :responder,
+              :translator,
+              :writer_manager
 
   def initialize(user_input)
     @input_file_name = user_input[0]
     @output_file_name = user_input[1]
     @responder = Responder.new
+    @translator = Translator.new
     @writer_manager = WriterManager.new
     @input_file_content = get_file_content
   end
