@@ -26,4 +26,10 @@ class WriterManagerTest < Minitest::Test
     assert_equal "welcome to my program!", File.read(new_file)
   end
 
+  def test_braille_row_gen
+    row = BrailleRow.new("hello world")
+    @writer_manager.braille_row_gen("hello world")
+
+    assert_instance_of BrailleRow, @writer_manager.braille_rows[0]
+  end
 end
