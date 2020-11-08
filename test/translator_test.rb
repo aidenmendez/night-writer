@@ -2,20 +2,20 @@ require_relative "./test_helper"
 
 class TranslatorTest < Minitest::Test
   def setup
-    @translator = Translator.new
+    @controller = Controller.new(["message.txt", "braille.txt"])
+    @translator = @controller.translator
   end
 
-  def test_it_exists_and_has_attributes
+  def test_it_exists
     assert_instance_of Translator, @translator
     assert_instance_of Hash, @translator.keys
   end
 
-  def test_gen_keys
+  def test_keys_values
     a = ["0.", "..", ".."]
     p = ["00", "0.", "0."]
-    
-    keys = @translator.gen_keys
 
-    assert_equal a, keys["a"]
+    assert_equal a, @translator.keys["a"]
+    assert_equal p, @translator.keys["p"]
   end
 end
