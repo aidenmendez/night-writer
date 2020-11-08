@@ -41,4 +41,10 @@ class WriterManagerTest < Minitest::Test
     
     assert_equal 2, test_manager.braille_rows.length
   end
+
+  def test_translate_char
+    braille_w = [".0", "00", ".0"]
+    
+    assert_equal braille_w, @writer_manager.translate("w")
+  end
 end
