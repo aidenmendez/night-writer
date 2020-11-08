@@ -18,9 +18,19 @@ class WriterManager
   end
 
   def write_output_file(content, file_name)
+    all_lines = BrailleRow.get_lines(@braille_rows)
+    
     file = File.open(file_name, "w")
-    file.write(content)
+    print_lines(file, all_lines)
     file.close
+  end
+
+  def print_lines(file, all_lines)
+    braille= ""
+    all_lines.each do |line|
+      braille << (line + "\n")
+    end
+    file.write(braille.strip)
   end
 
   def braille_row_gen(text)

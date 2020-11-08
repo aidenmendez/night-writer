@@ -4,6 +4,12 @@ class BrailleRow
               :line_2,
               :line_3
 
+  def self.get_lines(rows)
+    rows.flat_map do |row|
+      [row.line_1, row.line_2, row.line_3]
+    end
+  end
+
   def initialize(parent, characters)
     @parent = parent
     @characters = characters
