@@ -6,7 +6,7 @@ class Controller
   attr_reader :input_file_name,
               :output_file_name,
               :input_file_content,
-              :writer_manager,
+              :manager,
               :function
 
   def self.run(user_input, function)
@@ -42,9 +42,9 @@ class Controller
 
   def create_manager(function)
     if function == "writer"
-      manager = WriterManager.new(self, @input_file_name)
+      WriterManager.new(self, @input_file_name)
     elsif function == "reader"
-      manager = ReaderManager.new(self, @input_file_name)
+      ReaderManager.new(self, @input_file_name)
     end
   end
 
