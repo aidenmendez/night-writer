@@ -7,15 +7,11 @@ class WriterManager < Manager
               :text
 
   def initialize(parent, input_file_name)
-    @parent = parent
+    super(parent, input_file_name)
     @translator = Translator.new(self)
-    @text = get_file_content(input_file_name)
+    # @text = get_file_content(input_file_name)
     @braille_rows = []
     braille_row_gen(@text)
-  end
-
-  def get_file_content(file_name)
-    File.readlines(file_name)[0]
   end
 
   def write_output_file(output_file_name)
