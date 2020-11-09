@@ -3,7 +3,7 @@ require_relative "./test_helper"
 class BrailleRowTest < Minitest::Test
   def setup
     parent = mock
-    @controller = Controller.new(["message.txt", "braille.txt"])
+    @controller = Controller.new(["message.txt", "braille.txt"], "writer")
     @braille_row = @controller.writer_manager.braille_rows[0]
   end
 

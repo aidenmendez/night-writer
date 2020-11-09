@@ -2,7 +2,7 @@ require_relative "./test_helper"
 
 class TranslatorTest < Minitest::Test
   def setup
-    @controller = Controller.new(["message.txt", "braille.txt"])
+    @controller = Controller.new(["message.txt", "braille.txt"], "writer")
     @translator = @controller.writer_manager.translator
   end
 
