@@ -2,7 +2,7 @@ require_relative "./test_helper"
 
 class ControllerTest < Minitest::Test
   def setup
-    @controller = Controller.new(["message.txt", "braille.txt"])
+    @controller = Controller.new(["message.txt", "braille.txt"], "writer")
   end
 
   def test_it_exists
@@ -12,6 +12,7 @@ class ControllerTest < Minitest::Test
   def test_it_has_attributes
     assert_equal "message.txt", @controller.input_file_name
     assert_equal "braille.txt", @controller.output_file_name
+    assert_equal "writer", @controller.function
     assert_instance_of WriterManager, @controller.writer_manager
   end
 
@@ -39,7 +40,7 @@ class ControllerTest < Minitest::Test
 
   def test_run_class_method
     Controller.expects(:confirm_user_input).returns(true)
-    new_controller = Controller.run(["message.txt", "long_braille.txt"])
+    new_controller = Controller.run(["message.txt", "long_braille.txt"], "writer")
 
     assert_instance_of Controller, new_controller
   end
