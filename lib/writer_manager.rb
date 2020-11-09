@@ -1,6 +1,7 @@
 require "./lib/braille_row"
+require "./lib/manager"
 
-class WriterManager
+class WriterManager < Manager
   attr_reader :braille_rows,
               :translator,
               :text
