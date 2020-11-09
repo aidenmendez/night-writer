@@ -2,4 +2,3 @@
 *.txt
 !message.txt
 coverage
-test/fixture_files/output
