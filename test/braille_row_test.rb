@@ -4,7 +4,7 @@ class BrailleRowTest < Minitest::Test
   def setup
     parent = mock
     @controller = Controller.new(["message.txt", "braille.txt"], "writer")
-    @braille_row = @controller.writer_manager.braille_rows[0]
+    @braille_row = @controller.manager.braille_rows[0]
   end
 
   def test_it_exists_and_has_attributes

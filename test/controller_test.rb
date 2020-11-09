@@ -13,7 +13,7 @@ class ControllerTest < Minitest::Test
     assert_equal "message.txt", @controller.input_file_name
     assert_equal "braille.txt", @controller.output_file_name
     assert_equal "writer", @controller.function
-    assert_instance_of WriterManager, @controller.writer_manager
+    assert_instance_of WriterManager, @controller.manager
   end
 
   def test_can_confirm_file_created
