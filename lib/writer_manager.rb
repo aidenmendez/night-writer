@@ -4,13 +4,13 @@ require "./lib/manager"
 class WriterManager < Manager
   attr_reader :braille_rows,
               :translator,
-              :text
+              :input_file_content
 
-  def initialize(parent, input_file_name)
-    super(parent, input_file_name)
+  def initialize(parent, user_input)
+    super(parent, user_input)
     @translator = Translator.new(self)
     @braille_rows = []
-    braille_row_gen(@text)
+    braille_row_gen(input_file_content)
   end
 
   def write_output_file(output_file_name)
