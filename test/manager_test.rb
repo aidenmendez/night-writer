@@ -4,7 +4,11 @@ require './lib/manager.rb'
 
 class ManagerTest < Minitest::Test
   def setup
-    @manager = Manager.new(parent, input_file)
+    locations = {
+      input: "./test/fixture_files/message.txt",
+      output: "./test/fixture_files/output/br_message.txt"
+    }
+    @manager = Manager.new(nil, [locations[:input], locations[:output]])
   end
 
   def test_it_exists
