@@ -18,10 +18,10 @@ class WriterManager < Manager
     File.readlines(file_name)[0]
   end
 
-  def write_output_file(content, file_name)
+  def write_output_file(output_file_name)
     all_lines = BrailleRow.get_lines(@braille_rows)
     
-    file = File.open(file_name, "w")
+    file = File.open(output_file_name, "w")
     print_lines(file, all_lines)
     file.close
   end

@@ -53,7 +53,7 @@ class Controller
   end
 
   def write_output_file
-    @manager.write_output_file(input_file_content, output_file_name)
+    @manager.write_output_file(output_file_name)
   end
 
   def confirm_file_created(output_file, char_count)
