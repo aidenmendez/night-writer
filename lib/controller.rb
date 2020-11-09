@@ -1,4 +1,3 @@
-require "./lib/responder"
 require "./lib/writer_manager"
 require "./lib/translator"
 require "./lib/braille_row"
@@ -9,13 +8,13 @@ class Controller
               :input_file_content,
               :writer_manager
 
-  def self.run(user_input)
+  def self.run(user_input, function)
     if confirm_user_input(user_input)
       new(user_input)
     end
   end
 
-  def self.confirm_user_input(user_input)
+  def self.confirm_user_input(user_input, function)
     if user_input.length != 2
       puts "Wrong number of arguments. Try again"
       exit
