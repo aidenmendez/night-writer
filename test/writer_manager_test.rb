@@ -14,7 +14,7 @@ class WriterManagerTest < Minitest::Test
   end
 
   def test_it_can_get_file_content
-    text = "welcome to my program!"
+    text = ["welcome to my program!"]
     assert_equal text, @writer_manager.get_file_content("message.txt")
   end
 
