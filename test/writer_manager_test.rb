@@ -2,8 +2,7 @@ require_relative "./test_helper"
 
 class WriterManagerTest < Minitest::Test
   def setup
-    @controller = Controller.new(["message.txt", "braille.txt"], "writer")
-    @writer_manager = @controller.manager
+    @writer_manager = WriterManager.new(nil, ["message.txt", "braille.txt"])
   end
 
   def test_it_exists_and_has_atttributes
