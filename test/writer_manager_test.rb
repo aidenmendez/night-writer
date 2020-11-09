@@ -20,12 +20,12 @@ class WriterManagerTest < Minitest::Test
   end
 
   def test_it_can_write_output_file
-    new_file = "test.txt"
+    output_file_name = "test.txt"
     content = "welcome to my program!"
     braille = ".00.0.000.000....00...0000..000.0.000.0.00..\n00.00....0...0..00.0.....0..0.00.00000....00\n.0..0...0.0.....0.0...0.00..0.0.0...0...0.0."
 
-    assert new_file, @writer_manager.write_output_file(content, new_file)
-    assert_equal braille, File.read(new_file)
+    assert output_file_name, @writer_manager.write_output_file(output_file_name)
+    assert_equal braille, File.read(output_file_name)
   end
 
   def test_braille_row_gen
