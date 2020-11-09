@@ -1,4 +1,5 @@
 require "./lib/writer_manager"
+require "./lib/reader_manager"
 require "./lib/translator"
 require "./lib/braille_row"
 
