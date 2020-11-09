@@ -34,17 +34,17 @@ class Controller
     @function = function
     @input_file_name = user_input[0]
     @output_file_name = user_input[1]
-    @manager = create_manager(function)
+    @manager = create_manager(user_input, function)
     # Push functionality down to an File I/O class
     @input_file_content = get_file_content
     write_output_file
   end
 
-  def create_manager(function)
+  def create_manager(user_input, function)
     if function == "writer"
-      WriterManager.new(self, @input_file_name)
+      WriterManager.new(self, user_input)
     elsif function == "reader"
-      ReaderManager.new(self, @input_file_name)
+      ReaderManager.new(self, user_input)
     end
   end
 

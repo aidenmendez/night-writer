@@ -1,14 +1,21 @@
 require './lib/translator'
 
 class Manager
-  def initialize(parent, input_file_name)
+  attr_reader :input_file_name,
+              :output_file_name,
+              :parent,
+              :translator,
+              :input_file_content
+
+  def initialize(parent, user_input)
     @parent = parent
-    @input_file_name = input_file_name
+    @input_file_name = user_input[0]
+    @output_file_name = user_input[1]
     @translator = Translator.new(self)
-    @text = get_file_content(input_file_name)
+    @input_file_content = get_file_content(input_file_name)
   end
 
   def get_file_content(input_file_name)
-    File.readlines(input_file_name)[0]
+    File.readlines(input_file_name)
   end
 end

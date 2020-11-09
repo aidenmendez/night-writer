@@ -8,6 +8,7 @@ class WriterManager < Manager
 
   def initialize(parent, user_input)
     super(parent, user_input)
+    @input_file_content = input_file_content[0]
     @translator = Translator.new(self)
     @braille_rows = []
     braille_row_gen(input_file_content)
