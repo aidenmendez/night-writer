@@ -18,12 +18,15 @@ class ReaderManagerTest < Minitest::Test
   end
 
   def test_it_inherits_attributes
-    braille = ".00.0.000.000....00...0000..000.0.000.0.00..00.00....0...0..00.0.....0..0.00.00000....00.0..0...0.0.....0.0...0.00..0.0.0...0...0.0."
+    braille = [".00.0.000.000....00...0000..000.0.000.0.00..\n", "00.00....0...0..00.0.....0..0.00.00000....00\n", ".0..0...0.0.....0.0...0.00..0.0.0...0...0.0."]
 
     assert_equal "./test/fixture_files/short_braille_sample.txt",  @reader_manager.input_file_name
     assert_equal "./test/fixture_files/output/eng_message.txt",  @reader_manager.output_file_name
     assert_instance_of Translator, @reader_manager.translator
     assert_equal braille, @reader_manager.input_file_content
+  end
 
+  def test_count_chars
+    @reader_manager.count_chars
   end
 end
