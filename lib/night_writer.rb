@@ -1,8 +1,5 @@
 require "./lib/controller"
 
 user_input = ARGV
-controller = Controller.new(user_input)
-
-controller.write_output_file(controller.input_file_content)
-
-puts controller.confirm_file_creation
+controller = Controller.run(user_input)
+puts controller.confirm_file_created(controller.output_file_name, controller.writer_manager.text.length)
