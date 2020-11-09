@@ -7,7 +7,7 @@ class ReaderManagerTest < Minitest::Test
   def setup
     locations = {
       input: "./test/fixture_files/braille.txt",
-      output: "./test/fixture_files/en_message.txt"
+      output: "./test/fixture_files/output/en_message.txt"
     }
     @controller = Controller.new([locations[:input], locations[:output]], "reader")
     @reader_manager = controller.manager
