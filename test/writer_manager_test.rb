@@ -50,25 +50,25 @@ class WriterManagerTest < Minitest::Test
     assert_equal [".0", "00", ".0"], @writer_manager.translate_char("w")
   end
 
-  def test_print_lines
+  def test_print_lines_when_one_braille_row
     all_lines = [".0","00", ".0"]
     braille = ".0\n00\n.0"
 
-    file = File.open("braille.txt", "w")
+    file = File.open("./test/fixture_files/output/test_print_single_braille_row.txt", "w")
     @writer_manager.print_lines(file, all_lines)
     file.close
 
-    assert_equal braille, File.read("braille.txt")
+    assert_equal braille, File.read("./test/fixture_files/output/test_print_single_braille_row.txt")
   end
 
-  def test_print_lines_when_there_are_multiple_rows
-    all_lines = [".0","00",".0","0.","00","..","00",".0", "00"] #www
+  def test_print_lines_when_multiple_braille_rows
+    all_lines = [".0","00",".0","0.","00","..","00",".0", "00"] #vertical www
     braille = ".0\n00\n.0\n0.\n00\n..\n00\n.0\n00"
 
-    file = File.open("braille.txt", "w")
+    file = File.open("./test/fixture_files/output/test_two_short_braille_rows.txt", "w")
     @writer_manager.print_lines(file, all_lines)
     file.close
 
-    assert_equal braille, File.read("braille.txt")
+    assert_equal braille, File.read("./test/fixture_files/output/test_two_short_braille_rows.txt")
   end
 end
