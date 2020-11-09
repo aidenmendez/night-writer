@@ -26,7 +26,7 @@ class ReaderManagerTest < Minitest::Test
     assert_equal braille, @reader_manager.input_file_content
   end
 
-  def test_count_chars
-    @reader_manager.count_chars
+  def test_it_can_convert_braille_to_english
+    @reader_manager.convert_to_english(@reader_manager.input_file_content)
   end
 end
