@@ -20,7 +20,7 @@ class ReaderManager < Manager
   def convert_to_english(braille)
     br_rows = slice_into_rows(braille)
     translation_keys = collect_translation_keys(br_rows)
-    output_str = translate_keys(translation_keys.flatten(1))
+    output_str = translate_keys(translation_keys)
   end
 
   def slice_into_rows(all_lines)
@@ -36,7 +36,7 @@ class ReaderManager < Manager
     rows.each do |row|
       keys << create_translation_keys(row)
     end
-    keys
+    keys.flatten(1)
   end
 
   def create_translation_keys(row)
