@@ -60,4 +60,10 @@ class ReaderManagerTest < Minitest::Test
 
     assert_equal "welcome to my ", @reader_manager.translate_keys(keys)
   end
+
+  def test_it_can_break_braille_array_into_rows
+    single_row =  [".00.0.000.000....00...0000..000.0.000.0.00..\n", "00.00....0...0..00.0.....0..0.00.00000....00\n", ".0..0...0.0.....0.0...0.00..0.0.0...0...0.0."]
+    all_lines = @reader_manager.input_file_content
+    assert_equal single_row, @reader_manager.slice_rows(all_lines)
+  end
 end
