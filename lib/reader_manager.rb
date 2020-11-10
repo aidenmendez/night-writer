@@ -1,4 +1,3 @@
-require './lib/manager'
 require "./lib/manager"
 
 class ReaderManager < Manager
@@ -22,7 +21,7 @@ class ReaderManager < Manager
   def convert_to_english(braille)
     br_rows = slice_into_rows(braille)
     translation_keys = collect_translation_keys(br_rows)
-    output_str = translate_keys(translation_keys)
+    translate_keys(translation_keys)
   end
 
   def slice_into_rows(all_lines)
@@ -43,9 +42,9 @@ class ReaderManager < Manager
 
   def create_translation_keys(row)
     translation_keys = []
-    line_1 = row[0].gsub("\n", "").scan(/.{2}/)
-    line_2 = row[1].gsub("\n", "").scan(/.{2}/)
-    line_3 = row[2].gsub("\n", "").scan(/.{2}/)
+    line_1 = row[0].delete("\n").scan(/.{2}/)
+    line_2 = row[1].delete("\n").scan(/.{2}/)
+    line_3 = row[2].delete("\n").scan(/.{2}/)
     
     line_1.each_with_index do |key_chunk_1, index|
       translation_keys << [key_chunk_1, line_2[index], line_3[index]]
