@@ -26,7 +26,6 @@ class WriterManagerTest < Minitest::Test
 
   def test_it_can_write_output_file
     output_file_name = "./test/fixture_files/output/test.txt"
-    content = "welcome to my program!"
     braille = ".00.0.000.000....00...0000..000.0.000.0.00..\n00.00....0...0..00.0.....0..0.00.00000....00\n.0..0...0.0.....0.0...0.00..0.0.0...0...0.0."
 
     assert output_file_name, @writer_manager.write_output_file
