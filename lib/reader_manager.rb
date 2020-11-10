@@ -7,7 +7,7 @@ class ReaderManager < Manager
   def initialize(parent, user_input)
     super(parent, user_input)
     @output_text = convert_to_english(@input_file_content)
-    write_output_file(@output_text)
+    write_output_file(@output_file_name)
   end
 
   def write_output_file(output_file_name)
