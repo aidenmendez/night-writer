@@ -20,6 +20,16 @@ class ControllerTest < Minitest::Test
     assert_instance_of WriterManager, @controller.manager
   end
 
+  def test_it_can_instantiate_reader_manager
+    locations = {
+      input: "./test/fixture_files/braille.txt",
+      output: "./test/fixture_files/output/reader_output.txt"
+    }
+    reader_controller = Controller.run([locations[:input], locations[:output]], "reader")
+
+    assert_instance_of ReaderManager, reader_controller.manager
+  end
+
   def test_can_confirm_file_created
     msg = "Created 'braille.txt' containing 22 characters"
     assert_equal msg, @controller.confirm_file_created("braille.txt", 22)
