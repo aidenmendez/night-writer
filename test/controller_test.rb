@@ -14,8 +14,6 @@ class ControllerTest < Minitest::Test
   end
 
   def test_it_has_attributes
-    assert_equal "./test/fixture_files/welcome_message.txt", @controller.input_file_name
-    assert_equal "./test/fixture_files/output/welcome_braille.txt", @controller.output_file_name
     assert_equal "writer", @controller.function
     assert_instance_of WriterManager, @controller.manager
   end
@@ -55,6 +53,19 @@ class ControllerTest < Minitest::Test
 
   def test_file_created
     assert_equal "Created 'new_file' containing 40 characters", @controller.confirm_file_created("new_file", 40)
+  end
+
+  def test_create_manager
+    assert_instance_of WriterManager, @controller.manager
+
+    locations = {
+      input: "./test/fixture_files/short_braille_sample.txt",
+      output: "./test/fixture_files/output/eng_message.txt"
+    }
+
+    reader_controller = Controller.run([locations[:input], locations[:output]], "reader")
+
+    assert_instance_of ReaderManager, reader_controller.manager
   end
 end
  
