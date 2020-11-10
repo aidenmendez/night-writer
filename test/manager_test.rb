@@ -10,7 +10,7 @@ class ManagerTest < Minitest::Test
     }
     # [locations[:input], locations[:output]]
 
-    @manager = Manager.new(nil, locations[:input])
+    @manager = Manager.new(nil, [locations[:input], locations[:output]])
   end
 
   def test_it_exists_and_has_attributes
@@ -18,7 +18,7 @@ class ManagerTest < Minitest::Test
   end
 
   def test_it_can_get_file_contents
-    text = "welcome to my program!"
+    text = ["welcome to my program!"]
     assert_equal text, @manager.get_file_content("message.txt")
   end
 end

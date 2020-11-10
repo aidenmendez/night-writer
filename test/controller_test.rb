@@ -22,12 +22,12 @@ class ControllerTest < Minitest::Test
   end
 
   def test_it_has_input_file_content_attribute
-    text = "welcome to my program!"
+    text = ["welcome to my program!"]
     assert_equal text, @controller.input_file_content
   end
 
   def test_it_can_get_file_content
-    text = "welcome to my program!"
+    text = ["welcome to my program!"]
     assert_equal text, @controller.get_file_content
   end
 
