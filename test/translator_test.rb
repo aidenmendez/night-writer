@@ -2,7 +2,11 @@ require_relative "./test_helper"
 
 class TranslatorTest < Minitest::Test
   def setup
-    @controller = Controller.new(["message.txt", "braille.txt"], "writer")
+    locations = {
+      input: "./test/fixture_files/welcome_message.txt",
+      output: "./test/fixture_files/output/br_message.txt"
+    }
+    @controller = Controller.new([locations[:input], locations[:output]], "writer")
     @translator = @controller.manager.translator
   end
 
