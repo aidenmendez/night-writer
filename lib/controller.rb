@@ -14,7 +14,6 @@ class Controller
   def initialize(user_input, function)
     @function = function
     @manager = create_manager(user_input, function)
-    write_output_file
   end
 
   def create_manager(user_input, function)
@@ -23,9 +22,5 @@ class Controller
     elsif function == "reader"
       ReaderManager.new(self, user_input)
     end
-  end
-
-  def write_output_file
-    @manager.write_output_file
   end
 end
