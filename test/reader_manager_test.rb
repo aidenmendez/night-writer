@@ -44,6 +44,20 @@ class ReaderManagerTest < Minitest::Test
       ["0.", "00", "0."], ["0.", "..", ".."], 
       ["00", "..", "0."], ["..", "00", "0."]]
 
-    assert_equal keys, @reader_manager.get_translation_keys(@reader_manager.input_file_content)
+    assert_equal keys, @reader_manager.create_translation_keys(@reader_manager.input_file_content)
+  end
+
+  def test_it_can_translate_keys
+    keys = [
+      [".0", "00", ".0"], ["0.", ".0", ".."], 
+      ["0.", "0.", "0."], ["00", "..", ".."],
+      ["0.", ".0", "0."], ["00", "..", "0."], 
+      ["0.", ".0", ".."], ["..", "..", ".."], 
+      [".0", "00", "0."], ["0.", ".0", "0."], 
+      ["..", "..", ".."], ["00", "..", "0."], 
+      ["00", ".0", "00"], ["..", "..", ".."]
+    ]
+
+    assert_equal "welcome to my ", @reader_manager.translate_keys(keys)
   end
 end
