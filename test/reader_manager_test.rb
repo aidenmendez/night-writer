@@ -30,7 +30,20 @@ class ReaderManagerTest < Minitest::Test
     @reader_manager.convert_to_english(@reader_manager.input_file_content)
   end
 
-  def test_it_can_translate_a_row
-    @reader_manager.translate_row(@reader_manager.input_file_content)
+  def test_it_can_get_translation_keys
+    keys = [
+      [".0", "00", ".0"], ["0.", ".0", ".."], 
+      ["0.", "0.", "0."], ["00", "..", ".."],
+      ["0.", ".0", "0."], ["00", "..", "0."], 
+      ["0.", ".0", ".."], ["..", "..", ".."], 
+      [".0", "00", "0."], ["0.", ".0", "0."], 
+      ["..", "..", ".."], ["00", "..", "0."], 
+      ["00", ".0", "00"], ["..", "..", ".."], 
+      ["00", "0.", "0."], ["0.", "00", "0."], 
+      ["0.", ".0", "0."], ["00", "00", ".."], 
+      ["0.", "00", "0."], ["0.", "..", ".."], 
+      ["00", "..", "0."], ["..", "00", "0."]]
+
+    assert_equal keys, @reader_manager.get_translation_keys(@reader_manager.input_file_content)
   end
 end
