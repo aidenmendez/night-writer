@@ -80,12 +80,12 @@ class ReaderManagerTest < Minitest::Test
   end
 
   def test_it_can_write_output_file
-    output_file_name = "reader_test.txt"
-    english = "welcome to my program!"
+    output_file_name = "./test/fixture_files/output/reader_test.txt"
+    message = "welcome to my program!"
     content = ".00.0.000.000....00...0000..000.0.000.0.00..\n00.00....0...0..00.0.....0..0.00.00000....00\n.0..0...0.0.....0.0...0.00..0.0.0...0...0.0."
 
     assert output_file_name, @reader_manager.write_output_file(output_file_name)
-    assert_equal english, File.read(output_file_name)
+    assert_equal message, File.read(output_file_name)
   end
 
   def test_all_characters

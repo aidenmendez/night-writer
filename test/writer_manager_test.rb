@@ -16,6 +16,7 @@ class WriterManagerTest < Minitest::Test
     assert_instance_of WriterManager, @writer_manager 
     assert_equal content, @writer_manager.input_file_content
     assert_instance_of Translator, @writer_manager.translator
+    assert "./test/fixture_files/output/br_message.txt"
   end
 
   def test_it_can_get_file_content
@@ -24,7 +25,7 @@ class WriterManagerTest < Minitest::Test
   end
 
   def test_it_can_write_output_file
-    output_file_name = "test.txt"
+    output_file_name = "./test/fixture_files/output/test.txt"
     content = "welcome to my program!"
     braille = ".00.0.000.000....00...0000..000.0.000.0.00..\n00.00....0...0..00.0.....0..0.00.00000....00\n.0..0...0.0.....0.0...0.00..0.0.0...0...0.0."
 

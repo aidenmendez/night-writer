@@ -19,7 +19,6 @@ class Controller
     @input_file_name = user_input[0]
     @output_file_name = user_input[1]
     @manager = create_manager(user_input, function)
-    # Push functionality down to an File I/O class
     @input_file_content = get_file_content
     write_output_file
   end
