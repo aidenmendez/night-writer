@@ -3,19 +3,22 @@ require "./lib/manager"
 
 class WriterManager < Manager
   attr_reader :braille_rows,
-              :input_file_content
+              :input_file_content,
+              :confirmation
 
   def initialize(parent, user_input)
     super(parent, user_input)
     @input_file_content = input_file_content[0]
     @braille_rows = []
     create_braille_rows(input_file_content)
+    write_output_file
+    @confirmation = confirm_file_created(@output_file_name, @input_file_content.length)
   end
 
-  def write_output_file(output_file_name)
+  def write_output_file
     all_lines = BrailleRow.get_lines(@braille_rows)
     
-    file = File.open(output_file_name, "w")
+    file = File.open(@output_file_name, "w")
     print_lines(file, all_lines)
     file.close
   end
