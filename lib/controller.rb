@@ -11,24 +11,7 @@ class Controller
               :function
 
   def self.run(user_input, function)
-    if confirm_user_input(user_input)
-      new(user_input, function)
-    end
-  end
-
-  def self.confirm_user_input(user_input)
-    if user_input.length != 2
-      puts "Wrong number of arguments. Try again"
-      exit
-    elsif !File.exist?(user_input[0])
-      puts "The file #{user_input[0]} doesn't exist. Try again"
-      exit
-    elsif user_input[0][-4..-1] != ".txt" || user_input[1][-4..-1] != ".txt"
-      puts "File names must end with the .txt extension. Try again"
-      exit
-    else
-      true
-    end
+    new(user_input, function)
   end
               
   def initialize(user_input, function)
