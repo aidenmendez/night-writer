@@ -3,16 +3,18 @@ require "./lib/manager"
 
 class ReaderManager < Manager
   attr_reader :english_converter,
-              :output_text
+              :output_text,
+              :confirmation
 
   def initialize(parent, user_input)
     super(parent, user_input)
     @output_text = convert_to_english(@input_file_content)
-    write_output_file(@output_file_name)
+    write_output_file
+    @confirmation = confirm_file_created(@output_file_name, @output_text.length)
   end
 
-  def write_output_file(output_file_name)
-    file = File.open(output_file_name, "w")
+  def write_output_file
+    file = File.open(@output_file_name, "w")
     file.write(@output_text)
     file.close
   end
