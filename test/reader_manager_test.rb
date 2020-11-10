@@ -68,10 +68,15 @@ class ReaderManagerTest < Minitest::Test
   end
 
   def test_collect_translation_keys
-    skip
-    single_row =  [".00.0.000.000....00...0000..000.0.000.0.00..\n", "00.00....0...0..00.0.....0..0.00.00000....00\n", ".0..0...0.0.....0.0...0.00..0.0.0...0...0.0."]
-    require 'pry'; binding.pry
-    assert_equal [], @reader_manager.collect_translation_keys(single_row)
+    locations = {
+      input: "./test/fixture_files/braille.txt",
+      output: "./test/fixture_files/output/br_message.txt"
+    }
+    single_row =  [[".00.0.000.000....00...0000..000.0.000.0.00..\n", "00.00....0...0..00.0.....0..0.00.00000....00\n", ".0..0...0.0.....0.0...0.00..0.0.0...0...0.0."]]
+    result = [[".0", "00", ".0"], ["0.", ".0", ".."], ["0.", "0.", "0."], ["00", "..", ".."], ["0.", ".0", "0."], ["00", "..", "0."], ["0.", ".0", ".."], ["..", "..", ".."], [".0", "00", "0."], ["0.", ".0", "0."], ["..", "..", ".."], ["00", "..", "0."], ["00", ".0", "00"], ["..", "..", ".."], ["00", "0.", "0."], ["0.", "00", "0."], ["0.", ".0", "0."], ["00", "00", ".."], ["0.", "00", "0."], ["0.", "..", ".."], ["00", "..", "0."], ["..", "00", "0."]]
+    local_manager = ReaderManager.new(nil, [locations[:input], locations[:output]])
+
+    assert_equal result, local_manager.collect_translation_keys(single_row)
   end
 
   def test_it_can_write_output_file
@@ -83,8 +88,7 @@ class ReaderManagerTest < Minitest::Test
     assert_equal english, File.read(output_file_name)
   end
 
-  def test_all_characters_zzz
-    
+  def test_all_characters
     all_chars = [" !',-.?abcdefghijklmnopqrstuvwxyz"]
     locations = {
       input: "./test/fixture_files/all_characters_braille.txt",
