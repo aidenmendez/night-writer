@@ -76,8 +76,8 @@ class ReaderManagerTest < Minitest::Test
 
   def test_it_can_write_output_file
     output_file_name = "reader_test.txt"
-    content = "welcome to my program!"
-    english = ".00.0.000.000....00...0000..000.0.000.0.00..\n00.00....0...0..00.0.....0..0.00.00000....00\n.0..0...0.0.....0.0...0.00..0.0.0...0...0.0."
+    english = "welcome to my program!"
+    content = ".00.0.000.000....00...0000..000.0.000.0.00..\n00.00....0...0..00.0.....0..0.00.00000....00\n.0..0...0.0.....0.0...0.00..0.0.0...0...0.0."
 
     assert output_file_name, @reader_manager.write_output_file(output_file_name)
     assert_equal english, File.read(output_file_name)
