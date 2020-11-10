@@ -20,7 +20,10 @@ class ReaderManager < Manager
 
     br_rows.each do |br_row|
       translation_keys << create_translation_keys(br_row)
+      translation_keys.flatten(2)
     end
+
+    output_str = translate_keys(translation_keys.flatten(1))
   end
 
   def create_translation_keys(row)
@@ -33,5 +36,13 @@ class ReaderManager < Manager
       translation_keys << [key_chunk_1, line_2[index], line_3[index]]
     end
     translation_keys
+  end
+
+  def translate_keys(braille_keys)
+    characters = ""
+    braille_keys.each do |braille_key|
+      characters << @translator.keys.key(braille_key)
+    end
+    characters
   end
 end
