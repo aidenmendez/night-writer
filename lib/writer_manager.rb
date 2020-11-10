@@ -9,7 +9,7 @@ class WriterManager < Manager
     super(parent, user_input)
     @input_file_content = input_file_content[0]
     @braille_rows = []
-    braille_row_gen(input_file_content)
+    create_braille_rows(input_file_content)
   end
 
   def write_output_file(output_file_name)
@@ -28,7 +28,7 @@ class WriterManager < Manager
     file.write(braille.strip)
   end
 
-  def braille_row_gen(text)
+  def create_braille_rows(text)
     chunks = text.scan(/.{1,40}/)
 
     chunks.each do |chunk|
