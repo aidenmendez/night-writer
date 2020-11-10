@@ -2,7 +2,12 @@ require_relative "./test_helper"
 
 class WriterManagerTest < Minitest::Test
   def setup
-    @writer_manager = WriterManager.new(nil, ["message.txt", "braille.txt"])
+    locations = {
+      input: "./test/fixture_files/welcome_message.txt",
+      output: "./test/fixture_files/output/br_message.txt"
+    }
+
+    @writer_manager = WriterManager.new(nil, [locations[:input], locations[:output]])
   end
 
   def test_it_exists_and_has_atttributes
@@ -15,7 +20,7 @@ class WriterManagerTest < Minitest::Test
 
   def test_it_can_get_file_content
     text = ["welcome to my program!"]
-    assert_equal text, @writer_manager.get_file_content("message.txt")
+    assert_equal text, @writer_manager.get_file_content("./test/fixture_files/welcome_message.txt")
   end
 
   def test_it_can_write_output_file
@@ -27,7 +32,7 @@ class WriterManagerTest < Minitest::Test
     assert_equal braille, File.read(output_file_name)
   end
 
-  def test_braille_row_gen
+  def test_create_braille_rows
     File.expects(:readlines).returns(["hello world"])
     test_manager = WriterManager.new(nil, ["message.txt", "braille.txt"])
 
@@ -35,7 +40,7 @@ class WriterManagerTest < Minitest::Test
     assert_equal "hello world", test_manager.braille_rows[0].characters
   end
 
-  def test_braille_row_gen_with_longer_string
+  def test_create_braille_rows_with_longer_string
     File.expects(:readlines).returns(["hello world, this is a string that is longer than forty characters!"])
     test_manager = WriterManager.new(nil, ["message.txt", "braille.txt"])
     
