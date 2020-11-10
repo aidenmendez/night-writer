@@ -11,12 +11,8 @@ class ReaderManager < Manager
 
   def convert_to_english(braille)
     output_str = ""
-    br_rows = []
+    br_rows = slice_into_rows(braille)
     translation_keys = []
-
-    braille.each_slice(3) do |br_row|
-      br_rows << br_row
-    end
 
     br_rows.each do |br_row|
       translation_keys << create_translation_keys(br_row)
@@ -24,6 +20,19 @@ class ReaderManager < Manager
     end
 
     output_str = translate_keys(translation_keys.flatten(1))
+  end
+
+  def slice_into_rows(all_lines)
+    br_rows = []
+    if all_lines.length == 3
+      br_rows = all_lines
+    elsif all_lines.length > 3
+      braille.each_slice(3) do |br_row|
+        br_rows << br_row
+      end
+      br_rows
+    end
+    
   end
 
   def create_translation_keys(row)
