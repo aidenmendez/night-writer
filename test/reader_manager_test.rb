@@ -29,4 +29,8 @@ class ReaderManagerTest < Minitest::Test
   def test_it_can_convert_braille_to_english
     @reader_manager.convert_to_english(@reader_manager.input_file_content)
   end
+
+  def test_it_can_translate_a_row
+    @reader_manager.translate_row(@reader_manager.input_file_content)
+  end
 end
