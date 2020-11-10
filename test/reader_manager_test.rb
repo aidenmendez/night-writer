@@ -67,7 +67,7 @@ class ReaderManagerTest < Minitest::Test
     assert_equal [single_row], @reader_manager.slice_into_rows(single_row)
   end
 
-  def test_collect_translation_keys_zzz
+  def test_collect_translation_keys
     skip
     single_row =  [".00.0.000.000....00...0000..000.0.000.0.00..\n", "00.00....0...0..00.0.....0..0.00.00000....00\n", ".0..0...0.0.....0.0...0.00..0.0.0...0...0.0."]
     require 'pry'; binding.pry
@@ -81,5 +81,19 @@ class ReaderManagerTest < Minitest::Test
 
     assert output_file_name, @reader_manager.write_output_file(output_file_name)
     assert_equal english, File.read(output_file_name)
+  end
+
+  def test_all_characters_zzz
+    
+    all_chars = " !',-.?abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    new_locations = {
+      input: "./test/fixture_files/all_characters_braille.txt",
+      output: "./test/fixture_files/output/output_all_chars_eng.txt"
+    }
+   
+    reader_manager_all = ReaderManager.new(nil, [new_locations[:input], new_locations[:output]])
+    
+    assert locations[:output]
+    assert_equal all_chars, File.readlines(locations[:output])
   end
 end
