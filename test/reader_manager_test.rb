@@ -85,13 +85,13 @@ class ReaderManagerTest < Minitest::Test
 
   def test_all_characters_zzz
     
-    all_chars = " !',-.?abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-    new_locations = {
+    all_chars = [" !',-.?abcdefghijklmnopqrstuvwxyz"]
+    locations = {
       input: "./test/fixture_files/all_characters_braille.txt",
       output: "./test/fixture_files/output/output_all_chars_eng.txt"
     }
    
-    reader_manager_all = ReaderManager.new(nil, [new_locations[:input], new_locations[:output]])
+    reader_manager_all = ReaderManager.new(nil, [locations[:input], locations[:output]])
     
     assert locations[:output]
     assert_equal all_chars, File.readlines(locations[:output])
