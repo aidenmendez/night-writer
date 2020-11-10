@@ -2,7 +2,8 @@ require './lib/manager'
 require "./lib/manager"
 
 class ReaderManager < Manager
-  attr_reader :english_converter
+  attr_reader :english_converter,
+              :output_text
 
   def initialize(parent, user_input)
     super(parent, user_input)
