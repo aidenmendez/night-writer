@@ -26,6 +26,11 @@ class ReaderManagerTest < Minitest::Test
     assert_equal braille, @reader_manager.input_file_content
   end
 
+  def test_it_can_get_file_content
+    text = [".00.0.000.000....00...0000..000.0.000.0.00..\n", "00.00....0...0..00.0.....0..0.00.00000....00\n", ".0..0...0.0.....0.0...0.00..0.0.0...0...0.0."]
+    assert_equal text, @reader_manager.get_file_content
+  end
+
   def test_it_can_convert_braille_to_english
     @reader_manager.convert_to_english(@reader_manager.input_file_content)
   end
@@ -82,9 +87,8 @@ class ReaderManagerTest < Minitest::Test
   def test_it_can_write_output_file
     output_file_name = "./test/fixture_files/output/reader_test.txt"
     message = "welcome to my program!"
-    content = ".00.0.000.000....00...0000..000.0.000.0.00..\n00.00....0...0..00.0.....0..0.00.00000....00\n.0..0...0.0.....0.0...0.00..0.0.0...0...0.0."
 
-    assert output_file_name, @reader_manager.write_output_file(output_file_name)
+    assert output_file_name, @reader_manager.write_output_file
     assert_equal message, File.read(output_file_name)
   end
 
@@ -95,9 +99,17 @@ class ReaderManagerTest < Minitest::Test
       output: "./test/fixture_files/output/output_all_chars_eng.txt"
     }
    
-    reader_manager_all = ReaderManager.new(nil, [locations[:input], locations[:output]])
+    ReaderManager.new(nil, [locations[:input], locations[:output]])
     
     assert locations[:output]
     assert_equal all_chars, File.readlines(locations[:output])
+  end
+
+  def test_can_confirm_file_created
+    msg = "Created 'braille.txt' containing 22 characters"
+    assert_equal msg, @reader_manager.confirm_file_created("braille.txt", 22)
+
+    msg = "Created './test/fixture_files/output/eng_message.txt' containing 22 characters"
+    assert_equal msg, @reader_manager.confirmation
   end
 end

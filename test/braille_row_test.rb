@@ -6,7 +6,6 @@ class BrailleRowTest < Minitest::Test
       input: "./test/fixture_files/welcome_message.txt",
       output: "./test/fixture_files/output/br_message.txt"
     }
-    parent = mock
     @controller = Controller.new([locations[:input], locations[:output]], "writer")
     @braille_row = @controller.manager.braille_rows[0]
   end
