@@ -35,7 +35,7 @@ class WriterManagerTest < Minitest::Test
 
   def test_create_braille_rows
     File.expects(:readlines).returns(["hello world"])
-    test_manager = WriterManager.new(nil, ["message.txt", "braille.txt"])
+    test_manager = WriterManager.new(nil, ["message.txt", "./test/fixture_files/output/braille.txt"])
 
     assert_instance_of BrailleRow, test_manager.braille_rows[0]
     assert_equal "hello world", test_manager.braille_rows[0].characters
@@ -43,7 +43,7 @@ class WriterManagerTest < Minitest::Test
 
   def test_create_braille_rows_with_longer_string
     File.expects(:readlines).returns(["hello world, this is a string that is longer than forty characters!"])
-    test_manager = WriterManager.new(nil, ["message.txt", "braille.txt"])
+    test_manager = WriterManager.new(nil, ["message.txt", "./test/fixture_files/output/braille.txt"])
     
     assert_equal 2, test_manager.braille_rows.length
   end
