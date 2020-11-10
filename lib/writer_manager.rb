@@ -1,26 +1,21 @@
 require "./lib/braille_row"
+require "./lib/manager"
 
-class WriterManager
+class WriterManager < Manager
   attr_reader :braille_rows,
-              :translator,
-              :text
+              :input_file_content
 
-  def initialize(parent, input_file_name)
-    @parent = parent
-    @translator = Translator.new(self)
-    @text = get_file_content(input_file_name)
+  def initialize(parent, user_input)
+    super(parent, user_input)
+    @input_file_content = input_file_content[0]
     @braille_rows = []
-    braille_row_gen(@text)
+    create_braille_rows(input_file_content)
   end
 
-  def get_file_content(file_name)
-    File.readlines(file_name)[0]
-  end
-
-  def write_output_file(content, file_name)
+  def write_output_file(output_file_name)
     all_lines = BrailleRow.get_lines(@braille_rows)
     
-    file = File.open(file_name, "w")
+    file = File.open(output_file_name, "w")
     print_lines(file, all_lines)
     file.close
   end
@@ -33,7 +28,7 @@ class WriterManager
     file.write(braille.strip)
   end
 
-  def braille_row_gen(text)
+  def create_braille_rows(text)
     chunks = text.scan(/.{1,40}/)
 
     chunks.each do |chunk|

@@ -2,9 +2,13 @@ require_relative "./test_helper"
 
 class BrailleRowTest < Minitest::Test
   def setup
+    locations = {
+      input: "./test/fixture_files/welcome_message.txt",
+      output: "./test/fixture_files/output/br_message.txt"
+    }
     parent = mock
-    @controller = Controller.new(["message.txt", "braille.txt"])
-    @braille_row = @controller.writer_manager.braille_rows[0]
+    @controller = Controller.new([locations[:input], locations[:output]], "writer")
+    @braille_row = @controller.manager.braille_rows[0]
   end
 
   def test_it_exists_and_has_attributes
