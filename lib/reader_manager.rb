@@ -6,33 +6,36 @@ class ReaderManager < Manager
 
   def initialize(parent, user_input)
     super(parent, user_input)
-    @english_v = convert_to_english(@input_file_content) 
+    @output_text = convert_to_english(@input_file_content)
+    write_output_file(@output_text)
+  end
+
+  def write_output_file(output_file_name)
+    file = File.open(output_file_name, "w")
+    file.write(@output_text)
+    file.close
   end
 
   def convert_to_english(braille)
-    output_str = ""
     br_rows = slice_into_rows(braille)
-    translation_keys = []
-
-    br_rows.each do |br_row|
-      translation_keys << create_translation_keys(br_row)
-      translation_keys.flatten(2)
-    end
-
+    translation_keys = collect_translation_keys(br_rows)
     output_str = translate_keys(translation_keys.flatten(1))
   end
 
   def slice_into_rows(all_lines)
     br_rows = []
-    if all_lines.length == 3
-      br_rows = all_lines
-    elsif all_lines.length > 3
-      braille.each_slice(3) do |br_row|
-        br_rows << br_row
-      end
-      br_rows
+    all_lines.each_slice(3) do |br_row|
+      br_rows << br_row
     end
-    
+    br_rows
+  end
+
+  def collect_translation_keys(rows)
+    keys = []
+    rows.each do |row|
+      keys << create_translation_keys(row)
+    end
+    keys
   end
 
   def create_translation_keys(row)
