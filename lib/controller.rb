@@ -4,10 +4,7 @@ require "./lib/translator"
 require "./lib/braille_row"
 
 class Controller
-  attr_reader :input_file_name,
-              :output_file_name,
-              :input_file_content,
-              :manager,
+  attr_reader :manager,
               :function
 
   def self.run(user_input, function)
@@ -16,10 +13,7 @@ class Controller
               
   def initialize(user_input, function)
     @function = function
-    @input_file_name = user_input[0]
-    @output_file_name = user_input[1]
     @manager = create_manager(user_input, function)
-    @input_file_content = get_file_content
     write_output_file
   end
 
@@ -31,15 +25,7 @@ class Controller
     end
   end
 
-  def get_file_content
-    @manager.get_file_content(input_file_name)
-  end
-
   def write_output_file
-    @manager.write_output_file(output_file_name)
-  end
-
-  def confirm_file_created(output_file, char_count)
-    "Created '#{output_file}' containing #{char_count} characters"
+    @manager.write_output_file
   end
 end
